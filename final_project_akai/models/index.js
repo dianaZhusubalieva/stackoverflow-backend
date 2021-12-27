@@ -17,6 +17,9 @@ const Problem = sequelize.define("problem", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.TEXT, allowNull: false },
+  tag: { type: DataTypes.ENUM(["javascript", "python", "java", "kotlin"]) },
+
+  // filter
 });
 
 const Picture = sequelize.define("picture", {
@@ -45,9 +48,6 @@ Comment.belongsTo(User);
 
 Problem.hasMany(Reply);
 Reply.belongsTo(Problem);
-
-Problem.hasMany(Comment);
-Comment.belongsTo(Problem);
 
 Problem.hasMany(Picture);
 Picture.belongsTo(Problem);
